@@ -1,0 +1,26 @@
+
+listen_ip: 127.0.0.1
+listen_port: 8080
+exporter_path: /checks
+
+checks:
+
+  - Name: ping_google
+    Command: ping -c 4 www.google.com
+    Frequency: 5
+    Environment:
+      url: "http://google.com"
+    Help: "checks a google ping"
+
+  - Name: dns_google
+    Command: nslookup google.com
+    Frequency: 30
+    Labels:
+      domain: google
+      type: dns
+    Help: "check google dns service"
+
+  - Name: dns_fail
+    Command: nslookup jscvnuseefw.com
+    Frequency: 6
+    Help: "check fail"
